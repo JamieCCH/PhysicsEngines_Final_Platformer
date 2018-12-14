@@ -13,11 +13,11 @@ public class CameraFollow : MonoBehaviour {
 
     public Vector3 offset = new Vector3(0f, 1.5f, -2.0f);
 
-    private Rigidbody m_rb = null;
+    //private Rigidbody m_rb = null;
 
     // Use this for initialization
     void Start () {
-        m_rb = GetComponent<Rigidbody>();
+        //m_rb = GetComponent<Rigidbody>();
     }
 
     private void LateUpdate()
@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour {
         transform.position = target.position + offset;
 
         var wantedRotationAngle = target.eulerAngles.y;
-        var wantedHeight = target.position.y + height;
+        var wantedHeight = target.position.y; //+ height;
 
         var currentRotationAngle = transform.eulerAngles.y;
         var currentHeight = transform.position.y;
