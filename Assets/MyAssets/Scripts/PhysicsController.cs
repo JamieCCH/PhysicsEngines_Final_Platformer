@@ -8,7 +8,7 @@ public class PhysicsController : MonoBehaviour {
     [SerializeField] private Animator m_animator;
     [SerializeField] private Rigidbody m_rb;
 
-    public float speed = 8.0f;
+    public float speed = 5.0f;
     private float m_turnSpeed = 100f;
 
 
@@ -20,9 +20,9 @@ public class PhysicsController : MonoBehaviour {
     void ForcesMovement()
     {
         float forwardSpeed = Input.GetAxis("Vertical") * speed;
-        // float strafeSpeed = Input.GetAxis("Horizontal") * speed;
+         float strafeSpeed = Input.GetAxis("Horizontal") * speed;
         Vector3 forwardAcceleration = forwardSpeed * transform.forward;
-        //Vector3 strafeforwarAcceleration = strafeSpeed * transform.right;
+        Vector3 strafeforwarAcceleration = strafeSpeed * transform.right;
 
         //m_rb.AddForce(forwardAcceleration + strafeforwarAcceleration, ForceMode.Acceleration);
         m_rb.AddForce(forwardAcceleration, ForceMode.Acceleration);
