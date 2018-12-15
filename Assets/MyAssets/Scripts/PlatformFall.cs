@@ -11,6 +11,7 @@ public class PlatformFall : MonoBehaviour {
     void Start()
     {
         m_rb = gameObject.GetComponent<Rigidbody>();
+        m_rb.isKinematic = true;
     }
 
 
@@ -19,9 +20,9 @@ public class PlatformFall : MonoBehaviour {
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("hit");
-            //m_rb.useGravity = true;
 
-            StartCoroutine(Falling(0.3f));
+            StartCoroutine(Falling(2.5f));
+
         }
     }
 
@@ -29,6 +30,7 @@ public class PlatformFall : MonoBehaviour {
     private IEnumerator Falling(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        m_rb.useGravity = true;
         m_rb.isKinematic = false;
     }
 

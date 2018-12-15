@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 
 public class CameraFollow : MonoBehaviour {
 
@@ -48,9 +48,9 @@ public class CameraFollow : MonoBehaviour {
         transform.LookAt(new Vector3(target.position.x, transform.position.y - targetHead,target.position.z));
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log(collision.gameObject.name);
+    //}
 
 }
