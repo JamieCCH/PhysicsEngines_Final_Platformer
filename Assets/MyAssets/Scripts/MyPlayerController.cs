@@ -10,6 +10,7 @@ public class MyPlayerController : MonoBehaviour {
 
     public GameObject winScreen;
     public GameObject dieScreen;
+    private Transform m_currMovingPlatform = null;
 
     void Start () {
         m_projectile = GetComponent<LaunchProjectile>();
@@ -42,7 +43,18 @@ public class MyPlayerController : MonoBehaviour {
             winScreen.SetActive(true);
         }
 
+        if(collision.gameObject.name == "MovingFloor")
+        {
+            m_currMovingPlatform = collision.gameObject.transform;
+            transform.SetParent(m_currMovingPlatform);
+        }
 
+    }
+
+    private void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "MovingSurfaceCollider")
+            m_currMovingPlatform = null;
     }
 
     private IEnumerator WaitAndFly(float waitTime)

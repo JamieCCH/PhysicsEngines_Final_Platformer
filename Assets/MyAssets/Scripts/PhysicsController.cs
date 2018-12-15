@@ -42,6 +42,7 @@ public class PhysicsController : MonoBehaviour {
     {
         ForcesMovement();
         JumpingAndLanding();
+        transform.parent = null;
     }
 
     private void JumpingAndLanding()
