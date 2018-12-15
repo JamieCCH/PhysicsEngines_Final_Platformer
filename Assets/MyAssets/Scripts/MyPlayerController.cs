@@ -8,6 +8,9 @@ public class MyPlayerController : MonoBehaviour {
   
     LaunchProjectile m_projectile = null;
 
+    public GameObject winScreen;
+    public GameObject dieScreen;
+
     void Start () {
         m_projectile = GetComponent<LaunchProjectile>();
 
@@ -21,8 +24,10 @@ public class MyPlayerController : MonoBehaviour {
     {
         if (other.gameObject.name == "dieArea")
         {
-            Debug.Log("die");
+            dieScreen.SetActive(true);
         }
+
+       
     }
 
     private void OnCollisionStay(Collision collision){
@@ -30,6 +35,11 @@ public class MyPlayerController : MonoBehaviour {
         if(collision.gameObject.name == "Pressure_plate_Button")
         {
             StartCoroutine(WaitAndFly(2.5f));
+        }
+
+        if (collision.gameObject.name == "RollerBall")
+        {
+            winScreen.SetActive(true);
         }
 
 

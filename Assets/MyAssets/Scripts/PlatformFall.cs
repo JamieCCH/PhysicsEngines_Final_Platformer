@@ -20,7 +20,6 @@ public class PlatformFall : MonoBehaviour {
         {
             Debug.Log("hit");
             //m_rb.useGravity = true;
-            //m_rb.mass *= 1000.0f;
 
             StartCoroutine(Falling(0.3f));
         }
