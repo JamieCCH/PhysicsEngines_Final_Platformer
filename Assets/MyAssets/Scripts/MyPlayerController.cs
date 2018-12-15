@@ -15,7 +15,6 @@ public class MyPlayerController : MonoBehaviour {
 
 	void Update () {
     
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +29,7 @@ public class MyPlayerController : MonoBehaviour {
         //Debug.Log(collision.gameObject.name);
         if(collision.gameObject.name == "Pressure_plate_Button")
         {
-            StartCoroutine("WaitAndFly", 1.2f);
+            StartCoroutine(WaitAndFly(2.5f));
         }
 
 

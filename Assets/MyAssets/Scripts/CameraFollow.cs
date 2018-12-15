@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+
 public class CameraFollow : MonoBehaviour {
 
     [SerializeField] private Transform target;
@@ -13,11 +15,13 @@ public class CameraFollow : MonoBehaviour {
 
     public Vector3 offset = new Vector3(0f, 1.5f, -2.0f);
 
-    //private Rigidbody m_rb = null;
+    private Rigidbody m_rb = null;
+    private float targetHead = .2f;
 
     // Use this for initialization
     void Start () {
-        //m_rb = GetComponent<Rigidbody>();
+        m_rb = GetComponent<Rigidbody>();
+        //targetHead = transform.position.y + .2f;
     }
 
     private void LateUpdate()
@@ -39,10 +43,9 @@ public class CameraFollow : MonoBehaviour {
 
         transform.position = target.position;
         transform.position -= currentRotation * Vector3.forward * distance;
-
         transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
 
-        transform.LookAt(target);
+        transform.LookAt(new Vector3(target.position.x, transform.position.y - targetHead,target.position.z));
     }
 
     private void OnCollisionEnter(Collision collision)

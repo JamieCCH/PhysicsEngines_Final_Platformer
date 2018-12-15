@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class LaunchProjectile : MonoBehaviour {
 
+    //public Vector3 m_initialVelocity = Vector3.zero;
+
     public Transform m_desiredDestination = null;
     public GameObject projectilePrefab;
 
@@ -17,14 +19,15 @@ public class LaunchProjectile : MonoBehaviour {
         get { return m_isGrounded; }
     }
 
-    private float verticalAngle = 50.0f;
-    private float horizontalAngle = 5.0f;
-    private float initialVelocity = 3.0f;
-    private float inputForce = 15.0f;
+    [SerializeField] private float verticalAngle = 50.0f;
+    [SerializeField] private float horizontalAngle = 5.0f;
+    [SerializeField] private float initialVelocity = 3.0f;
+    [SerializeField] private float inputForce = 15.0f;
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
+        transform.LookAt(m_desiredDestination);
     }
 
     public void Launch()
@@ -33,10 +36,9 @@ public class LaunchProjectile : MonoBehaviour {
         {
             return;
         }
-
         m_isGrounded = false;
-        m_rb.GetComponent<Rigidbody>().velocity = GetLandingPosition() * inputForce;
-
+        m_rb.velocity = GetLandingPosition() * inputForce;
+       
     }
 
     Vector3 GetLandingPosition()
@@ -48,6 +50,7 @@ public class LaunchProjectile : MonoBehaviour {
         Vector3 landingPosition = new Vector3(Mathf.Sin(hozAngleRad), Mathf.Sin(vertAngleRad), Mathf.Cos(hozAngleRad));
 
         return landingPosition;
+
     }
 
 }
