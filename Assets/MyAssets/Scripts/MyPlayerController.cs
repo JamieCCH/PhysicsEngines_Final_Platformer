@@ -14,7 +14,6 @@ public class MyPlayerController : MonoBehaviour {
 
     void Start () {
         m_projectile = GetComponent<LaunchProjectile>();
-
     }
 
 	void Update () {
@@ -27,31 +26,37 @@ public class MyPlayerController : MonoBehaviour {
         {
             dieScreen.SetActive(true);
         }
-
-       
     }
 
     private void OnCollisionStay(Collision collision){
-        //Debug.Log(collision.gameObject.name);
+
         if(collision.gameObject.name == "Pressure_plate_Button")
         {
             StartCoroutine(WaitAndFly(2.5f));
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "MovingFloor")
+        {
+            m_currMovingPlatform = collision.gameObject.transform;
+            transform.SetParent(m_currMovingPlatform);
+        }
+
+        if (collision.gameObject.name == "RotatingTrap" || collision.gameObject.tag == "Projectile")
+
+        {
+            dieScreen.SetActive(true);
         }
 
         if (collision.gameObject.name == "RollerBall")
         {
             winScreen.SetActive(true);
         }
-
-        if(collision.gameObject.name == "MovingFloor")
-        {
-            m_currMovingPlatform = collision.gameObject.transform;
-            transform.SetParent(m_currMovingPlatform);
-        }
-
     }
 
-    private void OnCollisionExit2D(Collision2D coll)
+    private void OnCollisionExit(Collision coll)
     {
         if (coll.gameObject.tag == "MovingSurfaceCollider")
             m_currMovingPlatform = null;

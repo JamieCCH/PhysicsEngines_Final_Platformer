@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour {
     [SerializeField] private float rotationDamping = 1.5f;
     [SerializeField] private float heightDamping;
 
-    public Vector3 offset = new Vector3(0f, 1.5f, -2.0f);
+    public Vector3 offset = new Vector3(0f, 1.5f, -1.0f);
 
     private Rigidbody m_rb = null;
     private float targetHead = .2f;
